@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution.c                                        :+:      :+:    :+:   */
+/*   get_data.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellami <mtellami@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/27 13:09:13 by mtellami          #+#    #+#             */
-/*   Updated: 2022/11/27 13:09:41 by mtellami         ###   ########.fr       */
+/*   Created: 2022/11/29 10:52:28 by mtellami          #+#    #+#             */
+/*   Updated: 2022/11/29 15:54:28 by mtellami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	execution(char *cmd, char **env)
+t_data	get_data(char *av)
 {
-	char **command;
-	char	*path;
+	t_data		data;
+	extern char	**environ;
 
-	command = ft_split(cmd, ' ');
-	if (!command)
-		errors("Error");
-	path = get_path(command[0], env);
-	if (!path)
-		errors("command not found");
-	if (execve(path, command + 1, NULL) == -1)
-		errors("Error executing");
-	free_arr(command);
-	free(path);
-	exit(EXIT_SUCCESS);
+	data.env = environ;
+	data.cmd = ft_split(av, ' ');
+	if (!data.cmd)
+		exit(EXIT_FAILURE);
+	data.path = get_path(data.cmd[0], environ);
+	if (!data.path)
+		exit(EXIT_FAILURE);
+	return (data);
 }

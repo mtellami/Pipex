@@ -6,7 +6,7 @@
 /*   By: mtellami <mtellami@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 12:18:54 by mtellami          #+#    #+#             */
-/*   Updated: 2022/11/27 14:20:05 by mtellami         ###   ########.fr       */
+/*   Updated: 2022/11/29 15:54:43 by mtellami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 char	**get_secure_paths(char **env)
 {
 	char	**tree;
-	int	i;
+	int		i;
 
 	i = 0;
 	while (env[i])
@@ -30,7 +30,7 @@ char	**get_secure_paths(char **env)
 	return (NULL);
 }
 
-char *get_path(char *cmd, char **env)
+char	*get_path(char *cmd, char **env)
 {
 	char	*path;
 	char	**tree;
@@ -45,8 +45,7 @@ char *get_path(char *cmd, char **env)
 		path = ft_strjoin(tree[i], '/', cmd);
 		if (!access(path, F_OK))
 		{
-			free(tree);
-			printf("%s\n", path);
+			free_arr(tree);
 			return (path);
 		}
 		free(path);
