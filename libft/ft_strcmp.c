@@ -1,30 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   out_exec.c                                         :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellami <mtellami@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/26 16:43:03 by mtellami          #+#    #+#             */
-/*   Updated: 2022/11/30 12:31:55 by mtellami         ###   ########.fr       */
+/*   Created: 2022/11/30 09:39:20 by mtellami          #+#    #+#             */
+/*   Updated: 2022/12/01 15:19:25 by mtellami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-void	out_exec(int *fd, char **av, t_data data)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	int	i;
+	size_t	i;
 
-	close(fd[1]);
-	i = open(av[4], O_CREAT | O_WRONLY | O_TRUNC, 0777);
-	if (i == -1)
-		errors("Error : fail access files");
-	if (dup2(fd[0], STDIN_FILENO) == -1)
-		errors("Error");
-	close(fd[0]);
-	if (dup2(i, STDOUT_FILENO) == -1)
-		errors("Error");
-	close(i);
-	execve(data.path, data.cmd, NULL);
+	i = 0;
+	while ((s1[i] || s2[i]))
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
 }

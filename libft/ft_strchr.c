@@ -1,30 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   out_exec.c                                         :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellami <mtellami@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/26 16:43:03 by mtellami          #+#    #+#             */
-/*   Updated: 2022/11/30 12:31:55 by mtellami         ###   ########.fr       */
+/*   Created: 2022/12/01 13:49:41 by mtellami          #+#    #+#             */
+/*   Updated: 2022/12/01 14:44:00 by mtellami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-void	out_exec(int *fd, char **av, t_data data)
+int	ft_strchr(char *str)
 {
-	int	i;
-
-	close(fd[1]);
-	i = open(av[4], O_CREAT | O_WRONLY | O_TRUNC, 0777);
-	if (i == -1)
-		errors("Error : fail access files");
-	if (dup2(fd[0], STDIN_FILENO) == -1)
-		errors("Error");
-	close(fd[0]);
-	if (dup2(i, STDOUT_FILENO) == -1)
-		errors("Error");
-	close(i);
-	execve(data.path, data.cmd, NULL);
+	if (!str)
+		return (0);
+	while (*str)
+	{
+		if (*str == '\n')
+			return (1);
+		str++;
+	}
+	return (0);
 }

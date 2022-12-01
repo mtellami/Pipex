@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   out_exec.c                                         :+:      :+:    :+:   */
+/*   in_exec_bonus.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mtellami <mtellami@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/26 16:43:03 by mtellami          #+#    #+#             */
-/*   Updated: 2022/11/30 12:31:55 by mtellami         ###   ########.fr       */
+/*   Created: 2022/11/30 09:53:55 by mtellami          #+#    #+#             */
+/*   Updated: 2022/12/01 15:19:03 by mtellami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "pipex_bonus.h"
 
-void	out_exec(int *fd, char **av, t_data data)
+void	in_exec_bonus(char *cmd)
 {
-	int	i;
+	t_data	data;
+	int		fd[2];
+	int		pid;
 
+	data = get_data(cmd);
+	if (pipe(fd) == -1)
+		errors("Error");
+	pid = fork();
+	if (pid == -1)
+		errors("Error");
+	if (pid == 0)
+	{
+		close(fd[0]);
+		if (dup2(fd[1], STDOUT_FILENO) == -1)
+			errors("Error");
+		close(fd[1]);
+		execve(data.path, data.cmd, NULL);
+	}
 	close(fd[1]);
-	i = open(av[4], O_CREAT | O_WRONLY | O_TRUNC, 0777);
-	if (i == -1)
-		errors("Error : fail access files");
 	if (dup2(fd[0], STDIN_FILENO) == -1)
 		errors("Error");
 	close(fd[0]);
-	if (dup2(i, STDOUT_FILENO) == -1)
-		errors("Error");
-	close(i);
-	execve(data.path, data.cmd, NULL);
+	waitpid(pid, NULL, 0);
+	free(data.path);
+	free_arr(data.cmd);
 }

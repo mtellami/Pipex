@@ -6,7 +6,7 @@
 /*   By: mtellami <mtellami@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 11:29:27 by mtellami          #+#    #+#             */
-/*   Updated: 2022/11/29 15:55:20 by mtellami         ###   ########.fr       */
+/*   Updated: 2022/11/30 08:08:42 by mtellami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,5 @@ int	main(int ac, char **av)
 	if (pid[1] == 0)
 		out_exec(fd, av, data[1]);
 	wait_close(fd, pid);
-	return (0);
+	return (EXIT_SUCCESS);
 }
