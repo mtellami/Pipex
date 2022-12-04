@@ -6,7 +6,7 @@
 /*   By: mtellami <mtellami@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/30 10:55:16 by mtellami          #+#    #+#             */
-/*   Updated: 2022/12/01 15:18:51 by mtellami         ###   ########.fr       */
+/*   Updated: 2022/12/02 09:44:31 by mtellami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	writing(int *fd, char *limiter)
 
 	close(fd[0]);
 	write(1, "pipe heredoc> ", 14);
-	line = get_line(0);
+	line = get_line(STDIN_FILENO);
 	while (line)
 	{
 		if (!ft_strcmp(limiter, line))
@@ -30,7 +30,7 @@ void	writing(int *fd, char *limiter)
 		write(1, "pipe heredoc> ", 14);
 		ft_putendl_fd(line, fd[1]);
 		free(line);
-		line = get_line(0);
+		line = get_line(STDIN_FILENO);
 	}
 	free(line);
 	close(fd[1]);

@@ -6,7 +6,7 @@
 /*   By: mtellami <mtellami@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/27 12:18:54 by mtellami          #+#    #+#             */
-/*   Updated: 2022/11/29 15:54:43 by mtellami         ###   ########.fr       */
+/*   Updated: 2022/12/04 01:07:03 by mtellami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ char	*get_path(char *cmd, char **env)
 		i++;
 	}
 	free(tree);
+	errors("Errors : command not found");
 	return (NULL);
 }

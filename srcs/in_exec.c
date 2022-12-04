@@ -6,7 +6,7 @@
 /*   By: mtellami <mtellami@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/26 15:27:50 by mtellami          #+#    #+#             */
-/*   Updated: 2022/11/29 14:43:34 by mtellami         ###   ########.fr       */
+/*   Updated: 2022/12/02 08:39:31 by mtellami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	in_exec(int *fd, char **av, t_data data)
 	close(fd[0]);
 	i = open(av[1], O_RDONLY);
 	if (i == -1)
-		errors("Error : fail access files");
+		errors("Error : fail access file");
 	if (dup2(fd[1], STDOUT_FILENO) == -1)
 		errors("Error");
 	close(fd[1]);

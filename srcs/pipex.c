@@ -6,11 +6,16 @@
 /*   By: mtellami <mtellami@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/24 11:29:27 by mtellami          #+#    #+#             */
-/*   Updated: 2022/11/30 08:08:42 by mtellami         ###   ########.fr       */
+/*   Updated: 2022/12/02 09:23:46 by mtellami         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+int	access_file(char *path)
+{
+	return (!access(path, F_OK));
+}
 
 void	wait_close(int *fd, int *pid)
 {
@@ -26,7 +31,7 @@ int	main(int ac, char **av)
 	int		fd[2];
 	int		pid[2];
 
-	if (ac != 5)
+	if (ac != 5 || !access_file(av[1]))
 		errors("Usage: ./pipex file1 \"cmd1\" \"cmd2\" file2");
 	data[0] = get_data(av[2]);
 	data[1] = get_data(av[3]);
