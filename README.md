@@ -22,7 +22,7 @@
   - 🔹 Redirecte reading from STDIN to file1.
   - 🔹 Create the pipe for comunication between processes.
   - 🔹 Create the first child process & redirecte STDOUT to the pipe (fd[1]) & execute cmd1.
-  - 🔹 Create the secound child process & redirecte STDIN to the pipe (fd[0]) and STDOUT to file2 & execute cmd1.
+  - 🔹 Create the secound child process & redirecte STDIN to the pipe (fd[0]) and STDOUT to file2 & execute cmd2.
 ### ♦️  Bonus
   - 🔹 Multiple pipes (same just keep redirecting).
   - 🔹 Handling << (Here_doc) and >> (Append).
