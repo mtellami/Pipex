@@ -25,7 +25,7 @@
 ```
 
 ### ♦️  Bonus
-  - 🔹 Multiple pipes (same just keep redirecting).
+  - 🔹 Multiple pipes .
   
 ```
     Systax : ./pipex file1 cmd1 cmd2 cmd3 ... cmdn file2
