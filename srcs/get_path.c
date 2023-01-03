@@ -51,7 +51,7 @@ char	*get_path(char *cmd, char **env)
 		free(path);
 		i++;
 	}
-	free(tree);
+	freearr(tree);
 	errors("Errors : command not found");
 	return (NULL);
 }
